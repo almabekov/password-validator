@@ -1,5 +1,7 @@
 package com.example.andrey.password_validator;
 
+import java.util.Set;
+
 /**
  * Created by Andrey on 2018-06-05.
  */
@@ -17,10 +19,15 @@ public class Validator {
 
         //has digit
         for (int i=0;i<password.length();i++) {
-            if (password.charAt(i)-'0'>=0 && password.charAt(i)-'0'<=9) hasDigit=true;
-
+            if (Character.isDigit(password.charAt(i))) hasDigit=true;
+            if (!Character.isDigit(password.charAt(i)) && !Character.isLetter(password.charAt(i)) && !Character.isWhitespace(password.charAt(i))) hasSpecialCharacter=true;
         }
-        if (hasDigit==false || hasUppercase==false) return false;
+        if (hasDigit==false || hasSpecialCharacter==false) return false;
+
+        //has lowercase and uppercase
+        if (password.toUpperCase()!=password)  hasLowercase=true;
+        if (password.toLowerCase()!=password) hasUppercase=true;
+        if (hasLowercase==false || hasUppercase==false) return false;
 
         return true;
     }

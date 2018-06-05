@@ -37,4 +37,9 @@ public class ValidatorTest {
     public void has_special_character() {
         assertTrue(!Validator.validate("Abcdefg1")); //does not have special character
     }
+
+    @Test
+    public void correct_password() {
+        assertTrue(Validator.validate("Abcdef5!"));
+    }
 }
